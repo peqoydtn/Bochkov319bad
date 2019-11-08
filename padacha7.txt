@@ -1,0 +1,19 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int strange_multiply(int x, int y) {
+    int sum = 0;
+    for (int i = 0; i < y; i++) {
+        sum = sum + x;
+    }
+    return sum;
+}
+
+int main() {
+  int a, b;
+  cin >> a >> b;
+    cout << strange_multiply(max(a, b), min(a, b));
+  return 0;
+}
