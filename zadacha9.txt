@@ -1,0 +1,25 @@
+#include<iostream>
+
+using namespace std;
+
+int a[1000];
+int strange_sum(int i, int j) 
+{
+	if (j == i) {
+		return a[j];
+    } else {
+		return (strange_sum(i, (j + i) / 2) + strange_sum((j + i) / 2 + 1, j));
+    }
+}
+
+int main() 
+{
+	int n, m;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+    }
+	m = strange_sum(0, n - 1);
+    cout << m;
+	return 0;
+}
