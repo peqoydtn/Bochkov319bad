@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int randomnieChisla[10] = { 205 , 102 ,1, 599, 20, 14, 89, 153, 53, 245 };
+
+int rand(int x, int y) {
+	int a = ((x + y) / 20 + x * 100 * y) % 10;
+	int b = randomnieChisla[a];
+	return b % (y - x) + x + 1;
+}
+
+int main() {
+	string s;
+	getline(cin, s);
+	vector<bool> cod(s.size() + 1);
+	for (int i = 0; i < s.size(); ++i)
+		if (s[i] == '0') cod[i] = 0;
+		else cod[i] = 1;
+	bool res = 0;
+	for (int i = 0; i < s.size(); ++i) {
+		res = res ^ cod[i];
+	}
+	cod[s.size()] = res;
+	int crash = rand(0, s.size());
+	cout << "crashed disk is " << crash << endl;
+	for (int i = 0; i < s.size(); ++i)
+		if (i == crash) cout << "X";
+		else cout << cod[i];
+	cout << endl;
+	for (int i = 0; i < s.size(); ++i)
+		if (i != crash)
+			res = res ^ cod[i];
+	if (res != cod[s.size()])
+		cod[crash] = 1;
+	else
+		cod[crash] = 0;
+	cout << "Fixed:\n";
+	for (int i = 0; i < s.size(); ++i)
+		cout << cod[i];
+	return 0;
+}
