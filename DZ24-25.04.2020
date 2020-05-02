@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+long long int alg(long long int a, long long int b, long long int c) {
+long long int d = 1;
+a = a % c;
+while (b > 0) {
+    if (b & 1)
+        d = (d * a) % c;
+    b = b >> 1;
+    a = (a * a) % c;
+}
+return d;
+}
+
+int main() {
+    long long int p, p2, x, a, b, c, d, e, f;
+    b = 0;
+    cin >> p >> p2;
+    c = p * p2;
+    x = (p - 1) * (p2 - 1);
+    for(long long int k = 3; k < x; ++k)
+        if (x % k != 0) {
+            b = k;
+            break;
+        }
+    a = 0;
+    while (d != 1) {
+        ++a;
+        d = (a * b) % x;
+    }
+    cout << b << " " << c << endl << a << " " << c << endl << "Enter the information in the int" << endl;
+    cin >> e;
+    e = alg(e, b, c);
+    f = alg(e, a, c);
+    cout << e << " " << f;
+return 0;
+}
